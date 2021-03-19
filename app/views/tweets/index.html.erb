@@ -1,0 +1,47 @@
+<%= stylesheet_link_tag 'index', :media => "all" %>
+
+<%= page_entries_info @tweets %>
+
+<%= link_to "サッカー一覧", tweets_soccer_path %>
+<%= link_to "野球一覧", tweets_baseball_path %>
+<%= link_to "バスケットボール一覧", tweets_basketball_path %>
+
+<div class="tweets-container">
+    <div class="tweets-search">
+        <h3>投稿を検索</h3>
+        <%= form_tag({controller:"tweets",action:"index"}, method: :get) do %>
+        <%= text_field_tag :search %>
+        <%= submit_tag '検索する' %>
+    <% end %>
+</div>
+
+<h3>Tweet一覧</h3>
+<% @tweets.each do |t| %>
+    <div class="tweet">
+        <div class="main-box">
+            <div class="bob-box">
+                <%= image_tag t.image_url, size: "250x200" if t.image? %>
+            </div>
+            <div class="left-container">
+                <%= t.body %>
+                <%= t.number %>
+            </div>
+            <div class="right-container">
+                <% if user_signed_in? && current_user.id == t.user_id %>
+                    <%= link_to "レビューへ", tweet_path(t.id) %>
+                    <%= link_to "編集", edit_tweet_path(t.id) %>
+                    <%= link_to "削除する", tweet_path(t.id), method: :delete %>
+                    # resourcesを活用していると注意。methodを別途指定しよう。
+                    <% end %>
+            </div>
+            </div>
+            <p class="time">
+            <%= t.user.email %>
+                        <br>
+                        <%= t.created_at %>
+                    </p>
+                </div>
+            <% end %>
+        </div>
+
+        <%= paginate @tweets %>

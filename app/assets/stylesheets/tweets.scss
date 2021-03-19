@@ -1,0 +1,32 @@
+// Place all the styles related to the tweets controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: https://sass-lang.com/
+
+
+// paginate
+.pagination{
+    margin: auto;
+    width: 50%;
+    display: flex;
+    justify-content: flex-start;
+  }
+  .pagination span{
+    background-color: aqua;
+    text-align: center;
+    width: 50px;
+    border: solid 1px #354963;
+    color: rgb(197, 20, 159);
+    transition: .3s;
+    -webkit-transform: scale(1);
+    transform: scale(1);
+  }
+  .pagination span:hover{
+    transition: .3s;
+    -webkit-transform: scale(1.1);
+    transform: scale(1.1);
+  }
+  .pagination span a:hover{
+    transition: .3s;
+    -webkit-transform: scale(1.1);
+    transform: scale(1.1);
+  }
